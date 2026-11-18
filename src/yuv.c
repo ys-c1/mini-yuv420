@@ -73,8 +73,8 @@ int yuv420_to_rgb(const YuvFrame *f, uint8_t *rgb, int rgb_stride, int upsample)
     if (upsample != YUV_UPSAMPLE_NEAREST && upsample != YUV_UPSAMPLE_BILINEAR) return -1;
 
     for (int y = 0; y < f->height; y++) {
-        const uint8_t *row = f->y + (size_t)y * (size_t)f->width;
-        uint8_t *out = rgb + (size_t)y * (size_t)rgb_stride;
+        const uint8_t *row = f->y + (size_t)y * (size_t)f->y_stride;
+        uint8_t *out = rgb + (size_t)y * (size_t)(f->width * 3);
         for (int x = 0; x < f->width; x++) {
             int cu = 0;
             int cv = 0;
